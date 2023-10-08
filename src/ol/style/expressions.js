@@ -32,6 +32,7 @@ import {asArray, fromString, isStringColor} from '../color.js';
  *   * `['time']` returns the time in seconds since the creation of the layer
  *   * `['var', 'varName']` fetches a value from the style variables; will throw an error if that variable is undefined
  *   * `['zoom']` returns the current zoom level
+ *   * `['rotation']` returns the current rotation
  *
  * * Math operators:
  *   * `['*', value1, value2, ...]` multiplies the values (either numbers or colors)
@@ -689,6 +690,16 @@ Operators['zoom'] = {
   toGlsl: function (context, args) {
     assertArgsCount(args, 0);
     return 'u_zoom';
+  },
+};
+
+Operators['rotation'] = {
+  getReturnType: function () {
+    return ValueTypes.NUMBER;
+  },
+  toGlsl: function (context, args) {
+    assertArgsCount(args, 0);
+    return 'u_rotation';
   },
 };
 
